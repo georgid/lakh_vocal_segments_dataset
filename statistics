@@ -1,0 +1,5 @@
+
+num recordings 14 (current 6)
+total duration 7 minutes.
+number of onsets 850 (current 365)
+# cat lakh_vocal_segments_dataset/data/*/alignedNotes_vocal.txt | wc

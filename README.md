@@ -1,5 +1,5 @@
 
-=   =lakh-vocal-onsets==
+==lakh-vocal-onsets==
 
 Singing voice with annotations of vocal onsets,  based on the matched MIDI from http://colinraffel.com/projects/lmd/  
 
@@ -7,21 +7,21 @@ Singing voice with annotations of vocal onsets,  based on the matched MIDI from 
 ## Possible use tasks:
 - vocal onset detection
 - vocal transcription
-not suitable for offset detection as we did not pay attention to length of pitches
+
+not suitable yet for offset detection as we did not validate to length of notes
 
 list of the songs in the file list_MSD_ids
 
 ## Criteria for inclusion in dataset: 
 
-- from the dataset used in [MIREX Automatic_Lyrics-to-Audio_Alignment](http://www.music-ir.org/mirex/wiki/2017:Automatic_Lyrics-to-Audio_Alignment) and from the dataset presented in this paper
+- from the dataset used in [MIREX Automatic_Lyrics-to-Audio_Alignment](http://www.music-ir.org/mirex/wiki/2017:Automatic_Lyrics-to-Audio_Alignment)
 - has correctly linked MIDI (picked up the MIDI for the best match and verified onset lications by listening)
 - has predominant singing voice
 - has percussive intruments
 - the meter is 4/4
 
 ## Steps to derive annotations
-1) find recording MSD_TRACK_id
-https://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/unique_tracks.txt
+1) find recording MSD_TRACK_id in this [list](https://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/unique_tracks.txt)
 
 2) get match from  lakh-matched MIDI [script](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/fetch_midi.ipynb) 
 
@@ -29,7 +29,7 @@ https://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/
 
 4) get beat annotations - same script from 2)
 
-5) validate annotations in Sonic Visualiser
+5) validate annotations in [Sonic Visualiser](http://www.sonicvisualiser.org/) For this purpose .sv files are provided
 
 - put the audio for MSD_TRACK_id (local copy at mtg.upf.edu at /mnt/compmusic/mtgstorage/scratch/msd-audio/) in data/MSD_TRACK_id
 - sh scripts/open_in_sv.sh MSD_TRACK_id
@@ -47,6 +47,10 @@ smells like has a lot of same-pitch onsets
 call me - the onsets are on offbeats mostly
 bangles and sunrise have no percussive instruments 
 
-==== Citation =======
+## Citation
+
 TODO
 
+## Contact
+
+georgi (dot) dzhambazov (at) upf (dot) edu

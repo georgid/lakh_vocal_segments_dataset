@@ -14,6 +14,7 @@ Note that it is not suitable yet for offset detection as we did not validate the
 ## Folder structure
 - list_MSD_ids:  list of the songs in the dataset
 - scripts:  python scripts for loading data, more scripts are in the [similar repository](https://github.com/georgid/otmm_vocal_segments_dataset/tree/master/scripts)
+- data: audio files. excerpt.txt gives begining and ending timestamp of the 7-digital exceprt from the complete recording. Determined manually.
 
 
 ## Criteria for inclusion in the dataset:
@@ -24,7 +25,7 @@ Note that it is not suitable yet for offset detection as we did not validate the
 - has some clear metrical pulsation and the meter is 4/4
 
 ## Steps to derive annotations
-1) find recording MSD_TRACK_id in this [list](https://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/unique_tracks.txt)
+1) find recording MSD_TRACK_id in this [list](https://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/unique_tracks.txt) find its beginning and ending timestamp and create data/MSD_TRACK_id/exceprt.txt.
 
 2) get match from  lakh-matched MIDI [script](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/fetch_midi.ipynb) 
 

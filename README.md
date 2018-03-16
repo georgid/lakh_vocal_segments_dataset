@@ -26,16 +26,16 @@ Note that it is not suitable yet for offset detection as we did not validate the
 
 ## Steps to derive annotations
 1) find recording MSD_TRACK_id from this [list](https://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/unique_tracks.txt).  [match](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/match.py) 
-Then derive its beginning and ending timestamp and create data/MSD_TRACK_id/exceprt.txt manually.
+- Then derive its beginning and ending timestamp and create data/MSD_TRACK_id/exceprt.txt manually.
 
 2) get the matched MIDI from lakh-matched MIDI [fetch_midi](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/fetch_midi.py)  (if more than one match, pick the MIDI for the best match)
 
-3) derive singing voice note annotations  - 
+3) derive singing voice note annotations  
 [derive_note_annotations](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/derive_note_annotations.py) Optionally, doing in advance an annotation of vocal activity detection (VAD) segments (e.g. with singing voice present is helpful.
 
 4) derive beat annotations - [derive_beat_annotations](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/derive_beat_annotations.py) (find manually the number of the MIDI channel for percussion)
 
-5) verify annotations of note onsets and beats. Correct manually some imprecise vocal annotations. Could be done in [Sonic Visualiser](http://www.sonicvisualiser.org/). For this purpose do `sh [open_in_sv.sh](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/open_in_sv.sh)`
+5) verify annotations of note onsets and beats. Correct manually some imprecise vocal annotations. Could be done in [Sonic Visualiser](http://www.sonicvisualiser.org/) by opening sh [open_in_sv.sh](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/open_in_sv.sh)
 
 - put the audio for MSD_TRACK_id in data/MSD_TRACK_id 
 cp /Volumes/datasets/MTG/audio/incoming/millionsong-audio/mp3/D/W/U/$track_ID data/ 

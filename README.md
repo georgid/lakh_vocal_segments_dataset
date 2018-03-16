@@ -19,24 +19,27 @@ Note that it is not suitable yet for offset detection as we did not validate the
 
 ## Criteria for inclusion in the dataset:
 
-- song from the datasets used in [MIREX Automatic_Lyrics-to-Audio_Alignment](http://www.music-ir.org/mirex/wiki/2017:Automatic_Lyrics-to-Audio_Alignment). Note that this gives initial list of songs for cross-reference, but could be extended with any other songs.
-- has correctly linked MIDI (we pick the MIDI for the best match and keep the track only if it onsets are acceptably small off)
-- has predominant singing voice
+- songs from the datasets used in [MIREX Automatic_Lyrics-to-Audio_Alignment](http://www.music-ir.org/mirex/wiki/2017:Automatic_Lyrics-to-Audio_Alignment) full-listed also [here](https://docs.google.com/document/d/1bOefN9gEqYKPl7x3kmnJ1OWsjLuApza-9246qlBbMNY/edit?usp=sharing). Note that this gives initial list of songs for cross-reference, but could be extended with any other songs.
+- has a linked MIDI in the lakh dataset 
+- has predominant singing voice present in the 30-seconds thumbnail
 - has some clear metrical pulsation and the meter is 4/4
 
 ## Steps to derive annotations
-1) find recording MSD_TRACK_id in this [list](https://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/unique_tracks.txt) find its beginning and ending timestamp and create data/MSD_TRACK_id/exceprt.txt.
+1) find recording MSD_TRACK_id from this [list](https://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/unique_tracks.txt).  [match](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/match.py) 
+Then derive its beginning and ending timestamp and create data/MSD_TRACK_id/exceprt.txt manually.
 
-2) get match from  lakh-matched MIDI [script](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/fetch_midi.ipynb) 
+2) get the matched MIDI from lakh-matched MIDI [fetch_midi](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/fetch_midi.py)  (if more than one match, pick the MIDI for the best match)
 
-3) derive singing voice note annotations  - same script from 2) (find manually the number of the MIDI channel for singing voice). Optionally, doing in advance  an annotation of segments with singing voice is helpful.
+3) derive singing voice note annotations  - 
+[derive_note_annotations](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/derive_note_annotations.py) Optionally, doing in advance an annotation of vocal activity detection (VAD) segments (e.g. with singing voice present is helpful.
 
-4) derive beat annotations - same script from 2) (find manually the number of the MIDI channel for percussion)
+4) derive beat annotations - [derive_beat_annotations](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/derive_beat_annotations.py) (find manually the number of the MIDI channel for percussion)
 
-5) verify annotations of note onsets and beats. Correct manually some imprecise vocal annotations. We do in [Sonic Visualiser](http://www.sonicvisualiser.org/). For this purpose .sv files are provided
+5) verify annotations of note onsets and beats. Correct manually some imprecise vocal annotations. Could be done in [Sonic Visualiser](http://www.sonicvisualiser.org/). For this purpose do `sh [open_in_sv.sh](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/open_in_sv.sh)`
 
-- put the audio for MSD_TRACK_id in data/MSD_TRACK_id (a local copy of MSD is [at mtg's data server ](mtg.upf.edu at /mnt/compmusic/mtgstorage/scratch/msd-audio/ )
-- sh scripts/open_in_sv.sh MSD_TRACK_id
+- put the audio for MSD_TRACK_id in data/MSD_TRACK_id 
+cp /Volumes/datasets/MTG/audio/incoming/millionsong-audio/mp3/D/W/U/$track_ID data/ 
+
 
 
 ## Scratch notes and observations on songs so far...

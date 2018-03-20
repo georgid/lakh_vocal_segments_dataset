@@ -1,6 +1,7 @@
 
 import sys
 import csv
+import pretty_midi
 
 def derive_beat_annotation(midi):
     '''
@@ -53,7 +54,9 @@ if __name__ == '__main__':
     if len(sys.argv) != 3:
         sys.exit('usage: {} <midi> <MSD_track_ID>'.format(sys.argv[0]))
 
-    midi = sys.argv[1]
+    midi+path = sys.argv[1]
+    pm = pretty_midi.PrettyMIDI(midi_path)
     MSD_ID = sys.argv[2]
-    beats, downbeats = derive_beat_annotation(midi)
+    beats, downbeats = derive_beat_annotation(pm)
+
     write_beats_to_file (beats, MSD_ID)

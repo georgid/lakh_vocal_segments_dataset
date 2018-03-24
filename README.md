@@ -35,9 +35,15 @@ Note that it is not suitable yet for offset detection as we did not validate the
 
 4) derive beat annotations - [derive_beat_annotations](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/derive_beat_annotations.py) (find manually the number of the MIDI channel for percussion)
 
-5) verify annotations of note onsets and beats. Correct manually some imprecise vocal annotations. Could be done in [Sonic Visualiser](http://www.sonicvisualiser.org/) by opening sh [open_in_sv.sh](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/open_in_sv.sh)
+5) verify annotations of note onsets and beats. Correct manually some imprecise vocal annotations. Open as note layer in [Sonic Visualiser](http://www.sonicvisualiser.org/) by script 
+'sh [open_in_sv.sh](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/open_in_sv.sh)'
 
-- put the audio for MSD_TRACK_id in data/MSD_TRACK_id 
+- listen in slower motion
+
+- if systematic delay/advance of timestamps, measure the difference to onsets with SV's measure tool and run [shift time of annotation](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/shift_time_annotaion.py)
+
+- put the audio for MSD_TRACK_id in data/MSD_TRACK_id:
+
 cp /Volumes/datasets/MTG/audio/incoming/millionsong-audio/mp3/D/W/U/$track_ID data/ 
 
 

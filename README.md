@@ -15,7 +15,7 @@ Note that it is not suitable yet for offset detection as we did not validate the
 - list_MSD_ids:  list of the songs in the dataset
 - scripts:  python scripts for loading data, more scripts are in the [similar repository](https://github.com/georgid/otmm_vocal_segments_dataset/tree/master/scripts)
 - data: audio files. excerpt.txt gives begining and ending timestamp of the 7-digital exceprt from the complete recording. Determined manually.
-
+- experiments: ralated to the paper - Georgi Dzhambazov, André Holzapfel, Ajay Srinivasamurthy, Xavier Serra, Metrical-Accent Aware Vocal Onset Detection in Polyphonic Audio, In Proceedings of ISMIR 2017
 
 ## Criteria for inclusion in the dataset:
 
@@ -25,15 +25,16 @@ Note that it is not suitable yet for offset detection as we did not validate the
 - has some clear metrical pulsation and the meter is 4/4
 
 ## Steps to derive annotations
-1) find recording MSD_TRACK_id from this [list](https://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/unique_tracks.txt).  [match](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/match.py) 
+1) find recording MSD_TRACK_id from this [list](https://labrosa.ee.columbia.edu/millionsong/sites/default/files/AdditionalFiles/unique_tracks.txt).  Then match [by this script](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/match.py) 
 - Then derive its beginning and ending timestamp and create data/MSD_TRACK_id/exceprt.txt manually.
 
 2) get the matched MIDI from lakh-matched MIDI [fetch_midi](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/fetch_midi.py)  (if more than one match, pick the MIDI for the best match)
 
-3) derive singing voice note annotations  
-[derive_note_annotations](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/derive_note_annotations.py) Optionally, doing in advance an annotation of vocal activity detection (VAD) segments (e.g. with singing voice present is helpful.
+3) derive singing voice note annotations  by 
+[this script](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/derive_note_annotations.py) Since MIDI standard does not define an instrument for singing voice, the singing voice track is given a different program # in a random  channel in each MIDI. Thus one needs to manually identify the  MIDI channel # that corresponds to the melody of the singing voice track
+Optionally, doing in advance an annotation of segments with active vocal  is helpful.
 
-4) derive beat annotations - [derive_beat_annotations](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/derive_beat_annotations.py) (find manually the number of the MIDI channel for percussion)
+4) derive beat annotations by [this script](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/derive_beat_annotations.py)
 
 5) verify annotations of note onsets and beats. Correct manually some imprecise vocal annotations. Open as note layer in [Sonic Visualiser](http://www.sonicvisualiser.org/) by script 
 'sh [open_in_sv.sh](https://github.com/georgid/lakh_vocal_segments_dataset/blob/master/scripts/open_in_sv.sh)'

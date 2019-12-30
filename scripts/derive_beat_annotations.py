@@ -54,7 +54,7 @@ if __name__ == '__main__':
     if len(sys.argv) != 3:
         sys.exit('usage: {} <midi> <MSD_track_ID>'.format(sys.argv[0]))
 
-    midi+path = sys.argv[1]
+    midi_path = sys.argv[1]
     pm = pretty_midi.PrettyMIDI(midi_path)
     MSD_ID = sys.argv[2]
     beats, downbeats = derive_beat_annotation(pm)
